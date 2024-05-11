@@ -30,3 +30,23 @@ export async function listarProdutos(){
     console.log("Erro ao listar produtos", error);
   }
 }
+
+export async function somarColuna(coluna: string){
+  try{
+    await service.soma(coluna);
+    console.log(`${coluna} total mostrado com sucesso!`);
+
+  }catch (error) {
+    console.log(`Erro ao calcular ${coluna} total`, error);
+  }
+}
+
+export async function mediaColuna(coluna: string){
+  try{
+    await service.media(coluna);
+    console.log(`${coluna} médio mostrado com sucesso!`);
+
+  }catch (error) {
+    console.log(`Erro ao calcular ${coluna} médio`, error);
+  }
+}

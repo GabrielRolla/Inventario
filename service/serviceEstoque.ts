@@ -2,7 +2,7 @@ import fs from 'fs';
 import { Item } from "../model/interfaceData";
 import {writeCSV} from "../model/writeCSV"
 import {readCSV} from "../model/readCSV"
-
+import {somar} from "../model/somaCSV"
 
 
 const filePath = './model/database/estoque.csv'
@@ -43,11 +43,52 @@ export default class estoqueService{
 
 
   async listar() {
+    
     const estoque: Item[] = await readCSV(filePath);
     console.log(estoque);
 }
 
-}
+  async soma(coluna: string) {
+    const estoque: Item[] = await readCSV(filePath);
+
+    if(estoque == null)
+    {
+      throw new Error('Não existem produtos')
+    }
+    else
+    {
+      console.log(await somar(coluna))
+    }
+  }
+
+  async media(coluna: string) {
+    const estoque: Item[] = await readCSV(filePath);
+
+    let somaTotal = await somar(coluna); // Usando a função soma para calcular a soma total
+    let quantidadeTotal = 0;
+
+    estoque.forEach((Item) => {
+      quantidadeTotal += Item.quantidade;
+  });
+
+    const media = somaTotal / quantidadeTotal;
+    
+    console.log(media);
+    console.log(quantidadeTotal);
+    }
+
+
+
+
+  }
+
+
+
+
+
+
+
+
 
 /*
 
