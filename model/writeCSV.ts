@@ -21,4 +21,4 @@ export const writeCSV = async (filePath: string, data: Item[]): Promise<void> =>
   return csvWriter.writeRecords(data);
   };
 
-  //const combinedData = [...await readCSV(filePath), ...data];
+  

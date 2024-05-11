@@ -42,8 +42,12 @@ export default class estoqueService{
   } 
 
 
+  async listar() {
+    const estoque: Item[] = await readCSV(filePath);
+    console.log(estoque);
 }
 
+}
 
 /*
 

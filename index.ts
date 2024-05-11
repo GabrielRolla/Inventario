@@ -1,6 +1,4 @@
-import { adicionarProduto } from "./controller/controleEstoque";
-import { removerProduto } from "./controller/controleEstoque";
-
+import { adicionarProduto, listarProdutos, removerProduto } from "./controller/controleEstoque";
 import { Item } from "./model/interfaceData";
 
 const prompt = require('prompt-sync')({sigint: true});
@@ -45,6 +43,10 @@ const main = async () => {
             await removerProduto(produto);
             break;
 
+        case 3:
+
+            await listarProdutos();
+            break;
 
 
 
