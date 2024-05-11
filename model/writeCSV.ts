@@ -8,7 +8,7 @@ import {readCSV} from "../model/readCSV"
 
 
 export const writeCSV = async (filePath: string, data: Item[]): Promise<void> => {
-  const combinedData = [...await readCSV(filePath), ...data];
+  
   const csvWriter = createCsvWriter({
     path: filePath,
     header: [
@@ -18,5 +18,7 @@ export const writeCSV = async (filePath: string, data: Item[]): Promise<void> =>
       { id: 'quantidade', title: 'quantidade' },
     ],
   });
-  return csvWriter.writeRecords(combinedData);
+  return csvWriter.writeRecords(data);
   };
+
+  //const combinedData = [...await readCSV(filePath), ...data];

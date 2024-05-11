@@ -1,4 +1,6 @@
 import { adicionarProduto } from "./controller/controleEstoque";
+import { removerProduto } from "./controller/controleEstoque";
+
 import { Item } from "./model/interfaceData";
 
 const prompt = require('prompt-sync')({sigint: true});
@@ -34,6 +36,18 @@ const main = async () => {
 
             await adicionarProduto(dados); 
             break;
+
+
+        case 2:
+
+            var produto = receber( 'Digite o nome do produto: ');
+
+            await removerProduto(produto);
+            break;
+
+
+
+
 
 
         }
