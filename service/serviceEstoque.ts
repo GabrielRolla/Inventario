@@ -68,7 +68,7 @@ export default class estoqueService{
     let quantidadeTotal = 0;
 
     estoque.forEach((Item) => {
-      quantidadeTotal += Item.quantidade;
+      quantidadeTotal += +Item.quantidade;
   });
 
     const media = somaTotal / quantidadeTotal;
