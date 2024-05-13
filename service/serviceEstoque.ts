@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { Item } from "../model/interfaceData";
 import {writeCSV} from "../model/writeCSV"
 import {readCSV} from "../model/readCSV"
@@ -43,15 +42,23 @@ export default class estoqueService{
 
 
   async listar() {
-    
+
     const estoque: Item[] = await readCSV(filePath);
+
+    if(estoque.length === 0 || estoque.every(item => Object.keys(item).length === 0))
+      {
+        throw new Error('Não existem produtos')
+      }
+    else
+    {
     console.log(estoque);
+    }
 }
 
   async soma(coluna: string) {
     const estoque: Item[] = await readCSV(filePath);
 
-    if(estoque == null)
+    if(estoque.length === 0 || estoque.every(item => Object.keys(item).length === 0))
     {
       throw new Error('Não existem produtos')
     }
@@ -64,68 +71,65 @@ export default class estoqueService{
   async media(coluna: string) {
     const estoque: Item[] = await readCSV(filePath);
 
-    let somaTotal = await somar(coluna); // Usando a função soma para calcular a soma total
-    let quantidadeTotal = 0;
-
-    estoque.forEach((Item) => {
-      quantidadeTotal += +Item.quantidade;
-  });
-
-    const media = somaTotal / quantidadeTotal;
-    
-    console.log(media);
+    if(estoque.length === 0 || estoque.every(item => Object.keys(item).length === 0))
+    {
+      throw new Error('Não existem produtos')
     }
+    else
+    {
 
-    async contarItens() {
-
-      const estoque: Item[] = await readCSV(filePath);
-
+      let somaTotal = await somar(coluna);
       let quantidadeTotal = 0;
 
       estoque.forEach((Item) => {
         quantidadeTotal += +Item.quantidade;
       });
 
-      console.log(quantidadeTotal);
+      const media = somaTotal / quantidadeTotal;
+      
+      console.log(media);
+    }
+  }
+
+  async contarItens() {
+    
+    const estoque: Item[] = await readCSV(filePath);
+
+    if(estoque.length === 0 || estoque.every(item => Object.keys(item).length === 0))
+    {
+      throw new Error('Não existem produtos')
+    }
+    else
+    {
+      let quantidadeTotal = 0;
+
+      estoque.forEach((Item) => {
+        quantidadeTotal += +Item.quantidade;
+    });
+
+    console.log(quantidadeTotal);
+    }
   }
 
   async contarProdutos() {
 
     const estoque: Item[] = await readCSV(filePath);
 
-    let quantidadeTotal = 0;
+    if(estoque.length === 0 || estoque.every(item => Object.keys(item).length === 0))
+      {
+        throw new Error('Não existem produtos')
+      }
+      else
+      {
+        let quantidadeTotal = 0;
 
-    estoque.forEach(() => {
-      quantidadeTotal += 1;
-    });
+        estoque.forEach(() => {
+          quantidadeTotal += 1;
+        });
 
-    console.log(quantidadeTotal);
+        console.log(quantidadeTotal);
+      }
+  }
+
 }
 
-  }
-
-
-
-
-
-
-
-
-
-/*
-
-const main = async () => {
-  try {
-    const data = await readCSV('./src/model/database/estoque.csv');
-    console.log('Dados lidos:', data);
-
-    await writeCSV('./src/model/database/estoque.csv', data);
-    console.log('Dados escritos em output.csv');
-  } catch (error) {
-    console.error('Erro:', error);
-  }
-};
-
-  main(); 
-  
-  */
