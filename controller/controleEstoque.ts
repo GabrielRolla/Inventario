@@ -50,3 +50,23 @@ export async function mediaColuna(coluna: string){
     console.log(`Erro ao calcular ${coluna} médio`, error);
   }
 }
+
+export async function quantidadeItens(){
+  try{
+    await service.contarItens();
+    console.log(`Quantidade de itens mostrada com sucesso!`);
+
+  }catch (error) {
+    console.log(`Erro ao calcular quantidade de itens`, error);
+  }
+}
+
+export async function quantidadeProdutos(){
+  try{
+    await service.contarProdutos();
+    console.log(`Quantidade de produtos mostrada com sucesso!`);
+
+  }catch (error) {
+    console.log(`Erro ao calcular quantidade de produtos`, error);
+  }
+}

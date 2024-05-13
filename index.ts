@@ -1,4 +1,4 @@
-import { adicionarProduto, listarProdutos, removerProduto, somarColuna, mediaColuna } from "./controller/controleEstoque";
+import { adicionarProduto, listarProdutos, removerProduto, somarColuna, mediaColuna, quantidadeItens, quantidadeProdutos} from "./controller/controleEstoque";
 import { Item } from "./model/interfaceData";
 
 const prompt = require('prompt-sync')({sigint: true});
@@ -65,6 +65,14 @@ const main = async () => {
         case 7:
 
             await mediaColuna('peso');
+            break;
+        
+        case 8:
+            await quantidadeItens();
+            break;
+
+        case 9:
+            await quantidadeProdutos();
             break;
         }
     } catch (error) {

@@ -74,11 +74,33 @@ export default class estoqueService{
     const media = somaTotal / quantidadeTotal;
     
     console.log(media);
-    console.log(quantidadeTotal);
     }
 
+    async contarItens() {
 
+      const estoque: Item[] = await readCSV(filePath);
 
+      let quantidadeTotal = 0;
+
+      estoque.forEach((Item) => {
+        quantidadeTotal += +Item.quantidade;
+      });
+
+      console.log(quantidadeTotal);
+  }
+
+  async contarProdutos() {
+
+    const estoque: Item[] = await readCSV(filePath);
+
+    let quantidadeTotal = 0;
+
+    estoque.forEach(() => {
+      quantidadeTotal += 1;
+    });
+
+    console.log(quantidadeTotal);
+}
 
   }
 
